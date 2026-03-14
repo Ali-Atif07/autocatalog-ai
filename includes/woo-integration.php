@@ -46,7 +46,7 @@ function aiproduct_product_panel() {
                 <select id="ai-tone">
                     <?php foreach ($tones as $tone): ?>
                         <option value="<?php echo esc_attr($tone); ?>">
-                            <?php echo ucfirst($tone); ?>
+                           <?php echo esc_html(ucfirst($tone)); ?>
                         </option>
                     <?php endforeach; ?>
                 </select>
@@ -117,10 +117,10 @@ function aiproduct_ajax_generate() {
         wp_send_json_error(['message' => 'Unauthorized']);
     }
 
-    $product_name  = sanitize_text_field($_POST['product_name']  ?? '');
-    $existing_desc = sanitize_textarea_field($_POST['existing_desc'] ?? '');
-    $tone          = sanitize_text_field($_POST['tone']          ?? 'professional');
-    $type          = sanitize_text_field($_POST['type']          ?? 'description');
+    $product_name  = sanitize_text_field(wp_unslash($_POST['product_name']  ?? ''));
+    $existing_desc = sanitize_textarea_field(wp_unslash($_POST['existing_desc'] ?? ''));
+    $tone          = sanitize_text_field(wp_unslash($_POST['tone']          ?? ''));
+    $type          = sanitize_text_field(wp_unslash($_POST['type']          ?? ''));
 
     if (empty($product_name)) {
         wp_send_json_error(['message' => 'Product name is required']);

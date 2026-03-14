@@ -3,16 +3,24 @@ if (!defined('ABSPATH')) exit;
 
 // ─── Register settings ───────────────────────────────────────────
 function aiproduct_register_settings() {
-    register_setting('aiproduct_settings', 'aiproduct_provider');
-    register_setting('aiproduct_settings', 'aiproduct_api_key');
-    register_setting('aiproduct_settings', 'aiproduct_model');
-    register_setting('aiproduct_settings', 'aiproduct_default_tone');
+    register_setting('aiproduct_settings', 'aiproduct_provider',
+        ['sanitize_callback' => 'sanitize_text_field']);
+    register_setting('aiproduct_settings', 'aiproduct_api_key',
+        ['sanitize_callback' => 'sanitize_text_field']);
+    register_setting('aiproduct_settings', 'aiproduct_model',
+        ['sanitize_callback' => 'sanitize_text_field']);
+    register_setting('aiproduct_settings', 'aiproduct_default_tone',
+        ['sanitize_callback' => 'sanitize_text_field']);
 
     // Custom prompt settings — one per generation type
-    register_setting('aiproduct_settings', 'aiproduct_prompt_description');
-    register_setting('aiproduct_settings', 'aiproduct_prompt_short_description');
-    register_setting('aiproduct_settings', 'aiproduct_prompt_tags');
-    register_setting('aiproduct_settings', 'aiproduct_prompt_meta');
+    register_setting('aiproduct_settings', 'aiproduct_prompt_description',
+        ['sanitize_callback' => 'sanitize_textarea_field']);
+    register_setting('aiproduct_settings', 'aiproduct_prompt_short_description',
+        ['sanitize_callback' => 'sanitize_textarea_field']);
+    register_setting('aiproduct_settings', 'aiproduct_prompt_tags',
+        ['sanitize_callback' => 'sanitize_textarea_field']);
+    register_setting('aiproduct_settings', 'aiproduct_prompt_meta',
+        ['sanitize_callback' => 'sanitize_textarea_field']);
 }
 add_action('admin_init', 'aiproduct_register_settings');
 
@@ -203,7 +211,7 @@ function aiproduct_render_settings_page() {
                                            value="<?php echo esc_attr($key); ?>"
                                            <?php checked($provider, $key); ?>>
                                     <div class="provider-top">
-                                        <div class="provider-icon-wrap"><?php echo $p['icon']; ?></div>
+                                        <div class="provider-icon-wrap"><?php esc_html($p['icon']); ?></div>
                                         <div class="provider-check"></div>
                                     </div>
                                     <div class="provider-name"><?php echo esc_html($p['label']); ?></div>
@@ -263,8 +271,8 @@ function aiproduct_render_settings_page() {
                                     <input type="radio" name="aiproduct_default_tone"
                                            value="<?php echo esc_attr($key); ?>"
                                            <?php checked($default_tone, $key); ?>>
-                                    <span class="tone-icon"><?php echo $t['icon']; ?></span>
-                                    <span class="tone-name"><?php echo ucfirst($key); ?></span>
+                                    <span class="tone-icon"><?php esc_html($t['icon']); ?></span>
+                                    <span class="tone-name"><?php echo esc_html(ucfirst($key)); ?></span>
                                     <span class="tone-desc"><?php echo esc_html($t['desc']); ?></span>
                                 </label>
                                 <?php endforeach; ?>
@@ -288,7 +296,7 @@ function aiproduct_render_settings_page() {
                             <div class="aip-prompt-field">
                                 <div class="aip-prompt-label">
                                     <strong>
-                                        <?php echo $field['icon']; ?>
+                                        <?php echo esc_html($field['icon']); ?>
                                         <?php echo esc_html($field['label']); ?>
                                     </strong>
                                     <!--
@@ -514,7 +522,7 @@ function aiproduct_render_settings_page() {
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: new URLSearchParams({
                     action: 'aiproduct_test_connection',
-                    nonce:  '<?php echo wp_create_nonce("aiproduct_nonce"); ?>'
+                    nonce:  '<?php echo esc_js(wp_create_nonce("aiproduct_nonce")); ?>'
                 })
             })
             .then(function(r) { return r.json(); })

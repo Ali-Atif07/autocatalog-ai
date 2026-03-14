@@ -1,8 +1,8 @@
-=== AutoCatalog AI — Product Description Generator for WooCommerce ===
+=== AutoCatalog AI ===
 Contributors: Mohammed Ali Atif
-Tags: woocommerce, ai, product description, seo, openai, claude, gemini, groq, artificial intelligence
+Tags: woocommerce, ai, product description, openai, claude
 Requires at least: 6.0
-Tested up to: 6.7
+Tested up to: 6.9
 Stable tag: 1.0.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -12,9 +12,7 @@ Generate AI-powered product descriptions, tags, and SEO meta directly inside Woo
 
 == Description ==
 
-**AutoCatalog AI** adds a smart AI writing panel directly inside the WooCommerce product editor. Stop writing product descriptions manually — let AI generate compelling, on-brand content in seconds.
-
-Unlike other AI plugins, AutoCatalog AI is **completely free to install**. You bring your own API key from any supported provider and only pay for what you use. No subscriptions, no hidden fees, no data sent to third-party servers.
+**AutoCatalog AI** Generate AI-powered product descriptions, tags, and SEO meta for WooCommerce using your own API key. Free to install.
 
 = What It Does =
 

@@ -4,7 +4,7 @@
  * Plugin URI:  https://github.com/Ali-Atif07/autocatalog-ai
  * Description: AI-powered product descriptions, tags and SEO meta for WooCommerce.
  * Version:     1.0.0
- * Author:      Your Name
+ * Author:      Mohammed Ali Atif
  * Author URI:  https://github.com/Ali-Atif07
  * License:     GPLv2 or later          
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html  
@@ -23,14 +23,6 @@ require_once AIPRODUCT_PATH . 'includes/admin-settings.php';
 require_once AIPRODUCT_PATH . 'includes/api-handler.php';
 require_once AIPRODUCT_PATH . 'includes/woo-integration.php';
 
-function aiproduct_load_textdomain() {
-    load_plugin_textdomain(
-        'autocatalog-ai',
-        false,
-        dirname(plugin_basename(__FILE__)) . '/languages/'
-    );
-}
-add_action('plugins_loaded', 'aiproduct_load_textdomain');
 
 // Show error if WooCommerce not installed
 function aiproduct_check_woocommerce() {
