@@ -1,0 +1,34 @@
+#aiproduct-panel {
+    margin-top: 20px;
+}
+
+#aiproduct-panel .inside {
+    padding: 15px;
+}
+
+.aiproduct-row {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.aiproduct-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.aiproduct-buttons .button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#aiproduct-status {
+    padding: 10px;
+    background: #f9f9f9;
+    border-left: 4px solid #00aa00;
+    border-radius: 2px;
+}
